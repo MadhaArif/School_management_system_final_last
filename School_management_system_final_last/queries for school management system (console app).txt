@@ -1,0 +1,42 @@
+CREATE DATABASE School_Management_System;
+
+USE School_Management_System;
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Gender NVARCHAR(10) NOT NULL,
+    Class NVARCHAR(50) NOT NULL,
+    ContactInfo NVARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE Teachers (
+    TeacherID INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Subject NVARCHAR(100) NOT NULL,
+    ContactInfo NVARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY IDENTITY(1,1),
+    CourseName NVARCHAR(100) NOT NULL,
+    TeacherID INT NOT NULL,
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+CREATE TABLE Grades (
+    GradeID INT PRIMARY KEY IDENTITY(1,1),
+    StudentID INT NOT NULL,
+    CourseID INT NOT NULL,
+    Grade NVARCHAR(10) NOT NULL,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+SELECT * FROM Students
+SELECT * FROM Teachers
+SELECT * FROM Courses
+
+
